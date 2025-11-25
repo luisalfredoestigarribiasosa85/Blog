@@ -65,3 +65,5 @@ group :test do
   gem "selenium-webdriver"
 end
 gem "tzinfo-data"
+
+gem "cssbundling-rails", "~> 1.4"
