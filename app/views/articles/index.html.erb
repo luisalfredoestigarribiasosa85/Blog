@@ -1,0 +1,9 @@
+<h1 class="title">Hello, Rails!</h1>
+<h2>Articles</h2>
+<ul>
+  <% @articles.each do |article| %>
+    <li><%= article.title %></li>
+    <span> <%= article.body %> </span>
+    <%= link_to "Ver Articulo", article %>
+  <% end %>
+</ul>
