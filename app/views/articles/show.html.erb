@@ -1,18 +1,22 @@
-<h1>
-  <p class="text-3xl font-bold text-gray-800 mb-4">Articulo</p>
-</h1>
+<div class="max-w-2xl mx-auto my-8">
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-3xl font-semibold text-gray-800 mb-4">Articulo</h1>
 
-<h2 class="text-2xl font-semibold text-gray-700 mb-2">
-  <%= @article.title %>
-</h2>
+    <h2 class="text-2xl font-semibold text-gray-700 mb-2">
+      <%= @article.title %>
+    </h2>
 
-<p class="text-gray-600 leading-relaxed mb-4">
-  <%= @article.body %>
-</p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      <%= @article.body %>
+    </p>
 
-<p class="text-sm text-gray-500 italic mb-4">
-  Probando Acode
-</p>
+    <div class="flex justify-center space-x-4">
+      <%= link_to "Editar", edit_article_path(@article), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+      <%= button_to "Eliminar", article_path(@article), method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar este artículo?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+    </div>
 
-<%= link_to "Volver al inicio", articles_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-
+    <div class="mt-6 text-center">
+      <%= link_to "Volver al inicio", articles_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+    </div>
+  </div>
+</div>
