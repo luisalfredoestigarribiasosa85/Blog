@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @articles = Article.all
   end
@@ -12,9 +13,9 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: "Artículo fue creado exitosamente."
     else 
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +29,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.update(article_params)
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: "Artículo fue actualizado exitosamente."
     else 
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +38,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to articles_path
+    redirect_to articles_path, notice: "Artículo fue eliminado exitosamente."
   end
   
   private

@@ -1,23 +1,10 @@
-<h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-black to-white text-transparent bg-clip-text animate-gradient">Hello, Rails!</h1>
+<%= render "shared/home_link" %>
 
-<style>
-  .animate-gradient {
-    background-size: 200% auto;
-    animation: gradient 5s linear infinite;
-  }
+<h1 class="text-4xl text-center font-bold mb-4 bg-gradient-to-r from-black to-white text-transparent bg-clip-text animate-gradient">Hello, Rails!</h1>
 
-  @keyframes gradient {
-    0% {
-      background-position: 0% center;
-    }
-    100% {
-      background-position: 200% center;
-    }
-  }
-</style>
 
 <div class="container mx-auto py-8">
-  <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-2">Articles</h2>
+  <h2 class="text-2xl font-bold mb-4 text-center">Articles</h2>
 
   <div class="flex justify-end">
     <%= link_to "+ New Article", new_article_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
@@ -27,7 +14,7 @@
     <% @articles.each do |article| %>
       <li class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg p-4 mb-4">
         <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
-          <%= article.title %>
+          <%= article.title %> <span class="text-sm text-gray-500">Por: <%= @article.user.email %></span>
         </h3>
         <p class="text-gray-600 dark:text-gray-400 mt-1">
           <%= article.body %>

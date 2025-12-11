@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-semibold text-gray-800 mb-4">Articulo</h1>
 
     <h2 class="text-2xl font-semibold text-gray-700 mb-2">
-      <%= @article.title %>
+      <%= @article.title %> <br> <span class="text-sm text-gray-500">Por: <%= @article.user.email %></span>
     </h2>
 
     <p class="text-gray-600 leading-relaxed mb-4">
@@ -11,8 +11,12 @@
     </p>
 
     <div class="flex justify-center space-x-4">
-      <%= link_to "Editar", edit_article_path(@article), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+      <% if user_signed_in? && current_user == @article.user %>
+        <%= link_to "Editar", edit_article_path(@article), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+      <% end %>
+      <% if user_signed_in? && current_user == @article.user %>
       <%= button_to "Eliminar", article_path(@article), method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar este artículo?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+      <% end %>
     </div>
 
     <div class="mt-6 text-center">

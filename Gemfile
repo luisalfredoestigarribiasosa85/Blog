@@ -67,3 +67,4 @@ end
 gem "tzinfo-data"
 
 gem "cssbundling-rails", "~> 1.4"
+gem "devise"
