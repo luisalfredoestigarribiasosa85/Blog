@@ -13,9 +13,15 @@
   <ul class="mt-4">
     <% @articles.each do |article| %>
       <li class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg p-4 mb-4">
+      <% if article.user.present? %>
         <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
-          <%= article.title %> <span class="text-sm text-gray-500">Por: <%= @article.user.email %></span>
+          <%= article.title %> <span class="text-sm text-gray-500">Por: <%= article.user.name %></span>
         </h3>
+      <% else %>
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+          <%= article.title %>
+        </h3>
+      <% end %>
         <p class="text-gray-600 dark:text-gray-400 mt-1">
           <%= article.body %>
         </p>

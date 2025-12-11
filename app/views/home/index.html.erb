@@ -2,7 +2,7 @@
 
 <div class="container mx-auto py-8">
   <div class="bg-white shadow-md rounded-lg p-6">
-    <h1 class="text-3xl font-semibold text-gray-800 mb-4">Bienvenido al Blog <span class="font-normal text-gray-600"><%= current_user&.email || 'Invitado' %></span></h1>
+    <h1 class="text-3xl font-semibold text-gray-800 mb-4">Bienvenido al Blog <span class="font-normal text-gray-600"><%= user_signed_in? ? current_user.name : 'Invitado' %></span></h1>
     <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "text-red-500 hover:text-red-700 mt-2", data: { turbo_method: :delete } if user_signed_in? %>
 
     <p class="text-gray-600 leading-relaxed mb-4">

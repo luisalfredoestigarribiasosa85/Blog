@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @articles = Article.all
+    @articles = Article.includes(:user).all
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.includes(:user).find(params[:id])
   end
   
   def new
@@ -22,11 +22,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = Article.includes(:user).find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
+    @article = Article.includes(:user).find(params[:id])
     @article.update(article_params)
     if @article.save
       redirect_to @article, notice: "Artículo fue actualizado exitosamente."
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = Article.includes(:user).find(params[:id])
     @article.destroy
     redirect_to articles_path, notice: "Artículo fue eliminado exitosamente."
   end
