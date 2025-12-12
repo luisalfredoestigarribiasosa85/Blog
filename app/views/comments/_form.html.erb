@@ -1,0 +1,22 @@
+<div class="max-w-lg mx-auto border border-gray-300 p-6 rounded-lg shadow-md">
+  <%= form_with(model: [@article, @article.comments.build], local: true) do |form| %>
+    <% if @comment&.errors&.any? %>
+      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+        <ul>
+          <% @comment.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :content, "Tu comentario", class: "block mb-2 text-gray-700" %>
+      <%= form.text_area :content, class: "border border-gray-300 p-2 rounded w-full", rows: 4, placeholder: "Escribe tu comentario" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.submit "Comentar", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+  <% end %>
+</div>
