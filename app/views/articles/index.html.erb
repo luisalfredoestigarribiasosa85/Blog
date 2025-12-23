@@ -1,31 +1,25 @@
 <%= render "shared/home_link" %>
 
-<h1 class="text-4xl text-center font-bold mb-4 bg-gradient-to-r from-black to-white text-transparent bg-clip-text animate-gradient">Hello, Rails!</h1>
+<h1 class="text-4xl text-center font-bold mb-4 bg-gradient-to-r from-indigo-500 to-blue-500 text-transparent bg-clip-text animate-gradient max-w-2xl mx-auto">Hello, <span class="text-red-500 animate-pulse text-4xl font-bold">Rails!</span></h1>
 
 
-<div class="container mx-auto py-8">
-  <h2 class="text-2xl font-bold mb-4 text-center">Articles</h2>
+<div class="container mx-auto pb-8">
+  <h2 class="text-2xl font-bold mb-4 text-center text-gray-800 max-w-2xl mx-auto">Articulos</h2>
 
   <div class="flex justify-end">
-    <%= link_to "+ New Article", new_article_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
+    <%= link_to "+ Crear Articulo", new_article_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 max-w-2xl mx-auto text-center" %>
   </div>
 
-  <ul class="mt-4">
+  <ul class="mt-4 max-w-2xl mx-auto">
     <% @articles.each do |article| %>
-      <li class="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg p-4 mb-4">
-      <% if article.user.present? %>
-        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
-          <%= article.title %> <span class="text-sm text-gray-500">Por: <%= article.user.name %></span>
+      <li class="bg-white shadow-md rounded-lg p-4 mb-4 max-w-2xl mx-auto">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2 max-w-2xl mx-auto text-center">
+          <%= article.title %><%= ' ' if article.user.present? %><span class="text-sm text-gray-500"><%= "Por: #{article.user.name}" if article.user.present? %></span>
         </h3>
-      <% else %>
-        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
-          <%= article.title %>
-        </h3>
-      <% end %>
-        <p class="text-gray-600 dark:text-gray-400 mt-1">
+        <p class="text-gray-600 mt-1 max-w-2xl mx-auto text-center">
           <%= article.body %>
         </p>
-        <%= link_to "Ver Articulo", article, class: "block mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline" %>
+        <%= link_to "Ver Articulo", article, class: "block mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline max-w-2xl mx-auto" %>
       </li>
     <% end %>
   </ul>

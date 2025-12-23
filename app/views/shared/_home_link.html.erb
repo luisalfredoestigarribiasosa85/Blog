@@ -1,3 +1,8 @@
-<%= link_to root_path, class: "ml-10 text-blue-600 cursor-pointer bg-dark-500 hover:bg-dark-700 group hover:scale-105 transition-transform duration-300" do %>
-  <span class="material-symbols-outlined w-10 h-10 mt-11 group-hover:translate-x-0.5 transition-transform duration-300 group-hover:scale-125">home</span>
+<%= link_to root_path, class: "fixed top-6 left-6 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group border-2 border-blue-500 hover:border-blue-600" do %>
+  <span class="material-symbols-outlined text-blue-600 group-hover:text-blue-700 text-2xl transition-all duration-300 group-hover:rotate-12">
+    home
+  </span>
+  <span class="absolute left-14 bg-gray-800 text-white text-sm font-medium px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+    Inicio
+  </span>
 <% end %>

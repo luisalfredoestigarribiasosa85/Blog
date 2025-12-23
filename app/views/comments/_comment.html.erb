@@ -1,17 +1,18 @@
-<div id="<%= dom_id comment %>">
-  <div>
-    <strong>Content:</strong>
-    <%= comment.content %>
-  </div>
+<div id="<%= dom_id comment %>" class="bg-white shadow-md rounded-lg p-4 mb-4">
+  <div class="flex justify-between">
+    <div>
+      <h3 class="text-xl font-medium">Contenido:</h3>
+      <p class="text-gray-700"><%= comment.content %></p>
+    </div>
 
-  <div>
-    <strong>Article:</strong>
-    <%= comment.article_id %>
-  </div>
+    <div>
+      <h3 class="text-xl font-medium">Fecha de creación:</h3>
+      <p class="text-gray-700"><%= comment.created_at %></p>
+    </div>
 
-  <div>
-    <strong>User:</strong>
-    <%= comment.user_id %>
+    <div>
+      <h3 class="text-xl font-medium">Usuario:</h3>
+      <p class="text-gray-700"><%= comment.user.name %></p>
+    </div>
   </div>
-
 </div>

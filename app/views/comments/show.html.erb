@@ -1,10 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/home_link" %>
 
-<%= render @comment %>
+<div class="mb-4 max-w-2xl mx-auto my-8">
+  <p class="text-green-600"><%= notice %></p>
+</div>
 
-<div>
-  <%= link_to "Edit this comment", edit_comment_path(@comment) %> |
-  <%= link_to "Back to comments", comments_path %>
+<div class="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto my-8">
+  <%= render @comment %>
 
-  <%= button_to "Destroy this comment", @comment, method: :delete %>
+  <div class="mt-4 flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-0">
+    <div class="sm:pr-4">
+      <%= link_to "Editar", edit_comment_path(@comment), class: "w-full sm:w-auto block sm:inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer text-center", style: (current_user == @comment.user ? "" : "display:none;") if current_user == @comment.user %>
+    </div>
+    <div class="sm:px-4">
+      <%= button_to "Eliminar", @comment, method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar este comentario?" }, class: "w-full sm:w-auto block sm:inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer text-center", style: (current_user == @comment.user ? "" : "display:none;") if current_user == @comment.user %>
+    </div>
+    <div class="sm:pl-4">
+      <%= link_to "Volver", @comment.article, class: "w-full sm:w-auto block sm:inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer text-center" %>
+    </div>
+  </div>
 </div>

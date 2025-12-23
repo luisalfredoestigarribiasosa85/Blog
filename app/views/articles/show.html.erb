@@ -1,3 +1,5 @@
+<%= render "shared/home_link" %>
+
 <div class="max-w-2xl mx-auto my-8">
   <div class="bg-white shadow-md rounded-lg p-6">
     <h1 class="text-3xl font-semibold text-gray-800 mb-4">Articulo</h1>
@@ -12,10 +14,42 @@
 
     <h3>Comentarios</h3>
     <% @article.comments.each do |comment| %>
+      <% next unless comment&.persisted? %>
+      <% comment_author = comment.user %>
       <div class="mb-4">
-        <small>Por: <%= comment.user.name %></small>
+        <small>Por: <%= comment_author&.name || "Usuario desconocido" %></small>
         <p><%= comment.content %></p>
-        <small><%= time_ago_in_words(comment.created_at) %> atrás</small>
+        <% timestamp = comment.created_at || comment.updated_at %>
+        <small>
+          <% if timestamp %>
+            <%= time_ago_in_words(timestamp) %> ago
+          <% else %>
+            Fecha no disponible
+          <% end %>
+        </small>
+        <div class="flex space-x-2 mt-2">
+          <%= link_to comment_path(comment), 
+              class: "p-2 text-gray-600 hover:text-blue-600 rounded-full hover:bg-blue-100 transition-colors cursor-pointer",
+              title: "Ver comentario" do %>
+            <span class="material-symbols-outlined text-xl">visibility</span>
+          <% end %>
+
+          <% if current_user == comment.user %>
+            <%= link_to edit_comment_path(comment), 
+                class: "p-2 text-gray-600 hover:text-blue-600 rounded-full hover:bg-blue-100 transition-colors cursor-pointer",
+                title: "Editar comentario" do %>
+              <span class="material-symbols-outlined text-xl">edit</span>
+            <% end %>
+
+            <%= button_to comment_path(comment), 
+                method: :delete, 
+                class: "p-2 text-gray-600 hover:text-red-600 rounded-full hover:bg-red-100 transition-colors cursor-pointer",
+                form: { class: "inline", data: { turbo_confirm: "¿Estás seguro de eliminar este comentario?" } },
+                title: "Eliminar comentario" do %>
+              <span class="material-symbols-outlined text-xl">delete</span>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
     <%= render "comments/form", article: @article %>
@@ -25,7 +59,7 @@
         <%= link_to "Editar", edit_article_path(@article), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
       <% end %>
       <% if user_signed_in? && current_user == @article.user %>
-      <%= button_to "Eliminar", article_path(@article), method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar este artículo?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+        <%= button_to "Eliminar", article_path(@article), method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar este artículo?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
       <% end %>
     </div>
 

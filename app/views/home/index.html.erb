@@ -6,8 +6,9 @@
     <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "text-red-500 hover:text-red-700 mt-2", data: { turbo_method: :delete } if user_signed_in? %>
 
     <p class="text-gray-600 leading-relaxed mb-4">
-      Bienvenido al Blog, aquí podrás encontrar una gran cantidad de artículos sobre diversos temas.
+      ¡Bienvenido al Blog! Aquí podrás encontrar una gran variedad de artículos que abarcan temas como programación, tecnología, salud, historia, ciencia, entre otros. Encuentra información interesante y útil que te ayudará a ampliar tus conocimientos y a mantenerte actualizado en diferentes áreas de tu vida. ¡Explora, disfruta y comparte tus descubrimientos con otros usuarios!
     </p>
+    <%= link_to "Crear Articulo", new_article_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" if user_signed_in? %>
 
     <div class="flex justify-center space-x-4">
       <%= link_to "Explorar Artículos", articles_path(@articles), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>

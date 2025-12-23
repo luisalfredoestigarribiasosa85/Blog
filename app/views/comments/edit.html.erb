@@ -1,12 +1,14 @@
+<%= render "shared/home_link" %>
+
 <% content_for :title, "Editing comment" %>
 
-<h1>Editing comment</h1>
+<h1 class="text-2xl font-bold mb-4 max-w-2xl mx-auto my-8">Editar Comentario</h1>
 
 <%= render "form", comment: @comment %>
 
 <br>
 
-<div>
-  <%= link_to "Show this comment", @comment %> |
-  <%= link_to "Back to comments", comments_path %>
+<div class="flex justify-end max-w-2xl mx-auto my-8 gap-2 sm:gap-0">
+  <%= link_to "Show this comment", @comment, class: "text-blue-500 hover:underline w-full sm:w-auto block sm:inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer text-center" %> |
+  <%= link_to "Back to comments", @comment.article, class: "text-blue-500 hover:underline w-full sm:w-auto block sm:inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer text-center" %>
 </div>
