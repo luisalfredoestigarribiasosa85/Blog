@@ -1,0 +1,23 @@
+<%# app/views/layouts/_navbar.html.erb (o donde tengas tu nav) %>
+
+<%# Helper para determinar si un enlace es la página actual %>
+<%# Puedes definir esto en app/helpers/application_helper.rb si no lo tienes %>
+<%# def current_page?(path) %>
+<%#   current_page?(path) %>
+<%# end %>
+
+<nav class="bg-gray-800 py-4 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ul class="flex space-x-6">
+      <%# Clases base para todos los enlaces %>
+      <% link_base_classes = "text-white text-lg font-medium px-3 py-2 rounded-md transition duration-300 ease-in-out" %>
+      <% link_hover_classes = "hover:bg-gray-700 hover:text-gray-100" %>
+      <% active_link_classes = "bg-blue-600 text-white" %>
+
+      <%= link_to "Home", root_path, class: "#{link_base_classes} #{link_hover_classes} #{current_page?(root_path) ? active_link_classes : ''}" %>
+      <%= link_to "Noticias", news_index_path, class: "#{link_base_classes} #{link_hover_classes} #{current_page?(news_index_path) ? active_link_classes : ''}" %>
+      <%# Puedes añadir más enlaces aquí %>
+
+    </ul>
+  </div>
+</nav>
